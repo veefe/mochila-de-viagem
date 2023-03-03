@@ -1,6 +1,7 @@
 
 const form = document.getElementById('novoItem');
 const lista = document.getElementById('lista');
+const itens = []; //cria array de objetos para itens **só guarda strings
 
 form.addEventListener('submit', (evento) => {
     evento.preventDefault();
@@ -26,4 +27,16 @@ function criaElemento(nome, quantidade) {
     novoItem.innerHTML += nome;
 
     lista.appendChild(novoItem);
+
+    //pega os valores de nome e quantidade
+    const itemAtual = {
+        'nome': nome,
+        'quantidade': quantidade
+    }
+
+    //insere o item atual no array itens
+    itens.push(itemAtual)
+
+    //converte os valores de itens em strings usando o JSON e armazena no localStorage
+    localStorage.setItem('item', JSON.stringify(itens));
 };
